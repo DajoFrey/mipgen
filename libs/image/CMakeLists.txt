@@ -1,0 +1,72 @@
+cmake_minimum_required(VERSION 3.10)
+project(image)
+
+set(TARGET image)
+set(PUBLIC_HDR_DIR include)
+get_filename_component(DIR_ONE_ABOVE ../ ABSOLUTE)
+
+# ==================================================================================================
+# Sources and headers
+# ==================================================================================================
+#set(PUBLIC_HDRS
+#        include/image/ColorTransform.h
+#        include/image/ImageOps.h
+#        include/image/ImageSampler.h
+#        include/image/KtxBundle.h
+#        include/image/KtxUtility.h
+#        include/image/LinearImage.h
+#)
+
+set(SRCS
+    src/ImageOps.cpp
+    src/ImageSampler.cpp
+    src/KtxBundle.cpp
+    src/LinearImage.cpp
+)
+
+# ==================================================================================================
+# Include and target definitions
+# ==================================================================================================
+link_directories(
+    ${DIR_ONE_ABOVE}/math
+    ${DIR_ONE_ABOVE}/utils
+)
+
+add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+
+target_link_libraries(${TARGET} PUBLIC math utils)
+
+target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
+
+# ==================================================================================================
+# Compiler flags
+# ==================================================================================================
+if (NOT MSVC_NATIVE)
+    target_compile_options(${TARGET} PRIVATE -Wno-deprecated-register)
+endif()
+
+if (MSVC OR CLANG_CL)
+    target_compile_options(${TARGET} PRIVATE $<$<CONFIG:Release>:/fp:fast>)
+else()
+    target_compile_options(${TARGET} PRIVATE $<$<CONFIG:Release>:-ffast-math>)
+endif()
+
+# ==================================================================================================
+# Expose header-only utilities to lean-and-mean client projects.
+# ==================================================================================================
+add_library(image_headers INTERFACE)
+target_include_directories(image_headers INTERFACE ${PUBLIC_HDR_DIR})
+
+# ==================================================================================================
+# Installation
+# ==================================================================================================
+#install(TARGETS ${TARGET} ARCHIVE DESTINATION lib/${DIST_DIR})
+#install(DIRECTORY ${PUBLIC_HDR_DIR}/image DESTINATION include)
+
+# ==================================================================================================
+# Tests
+# ==================================================================================================
+#if (NOT ANDROID AND NOT WEBGL AND NOT IOS)
+#    add_executable(test_${TARGET} tests/test_image.cpp)
+#    target_link_libraries(test_${TARGET} PRIVATE image imageio gtest)
+#endif()
