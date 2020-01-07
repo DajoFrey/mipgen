@@ -1,5 +1,5 @@
 # mipgen
-I had trouble finding a decent standalone program which converts various image formats to the .ktx or .dds format. I stumbled upon [filament](https://github.com/google/filament) and found the [mipgen tool](https://github.com/google/filament/tree/master/tools/mipgen) which seemed to be a good starting point. 
+I had trouble finding a decent standalone program which converts various image formats to the .ktx or .dds format. Then I stumbled upon [filament](https://github.com/google/filament) and found the [mipgen tool](https://github.com/google/filament/tree/master/tools/mipgen) which seemed to be a good starting point. 
 
 ## Differences to [mipgen tool](https://github.com/google/filament/tree/master/tools/mipgen)
 - standalone
