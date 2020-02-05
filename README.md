@@ -6,7 +6,7 @@ I had trouble finding a decent standalone program which converts various image f
 - no-mipmap option 
 
 ## Note
-- currently linux only, windows planned
+- currently linux only, windows only on request
 - input must have png format
 
 ## Detailed Info
