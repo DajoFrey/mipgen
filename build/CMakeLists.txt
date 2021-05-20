@@ -6,8 +6,8 @@ include(ExternalProject)
 
 ExternalProject_Add(
     robin-map
-    SOURCE_DIR ${DIR_ONE_ABOVE}/third_party/robin-map/tnt
-    BINARY_DIR ${DIR_ONE_ABOVE}/third_party/robin-map/tnt
+    SOURCE_DIR ${DIR_ONE_ABOVE}/third_party/robin-map
+    BINARY_DIR ${DIR_ONE_ABOVE}/third_party/robin-map
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${DIR_ONE_ABOVE}/third_party/robin-map/tnt
     INSTALL_COMMAND ""
 )
@@ -27,8 +27,8 @@ ExternalProject_Add(
 )
 ExternalProject_Add(
     etc2comp 
-    SOURCE_DIR ${DIR_ONE_ABOVE}/third_party/etc2comp/
-    BINARY_DIR ${DIR_ONE_ABOVE}/third_party/etc2comp/
+    SOURCE_DIR ${DIR_ONE_ABOVE}/third_party/etc2comp/EtcLib
+    BINARY_DIR ${DIR_ONE_ABOVE}/third_party/etc2comp/EtcLib
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${DIR_ONE_ABOVE}/third_party/etc2comp
     INSTALL_COMMAND ""
 )
